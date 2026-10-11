@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "system": "Prznt Perfect",
+    "source": "Figma file [private], page StyleElements (0:1), section Skill (633:3). Extracted 2026-07-23 via Figma MCP (get_variable_defs + get_metadata + get_design_context). VERIFY items resolved against reference renders 2026-07-23.",
+    "source_of_truth": "Figma VARIABLES + measured frame geometry + reference renders (assets/figma-refs/). Hex labels and sizes printed on the Rules01-Rules03 slides are partially outdated - never use them as data.",
+    "canvas": {
+      "px": { "width": 1920, "height": 1080 },
+      "pt": { "width": 960, "height": 540 },
+      "inches": { "width": 13.333, "height": 7.5 },
+      "px_to_pt": 0.5,
+      "note": "The 1920x1080 px design canvas maps onto the standard PowerPoint 16:9 slide of 960x540 pt (13.333x7.5 in). Convert any px value to pt by multiplying by 0.5. (Do NOT use dpi-based 0.75: at 96 dpi 1920px would be a 20in slide, which is wrong - the slide size is fixed at 13.333in.)"
+    },
+    "font_embedding": "Not required - Arial is system-native everywhere."
+  },
+
+  "colors": {
+    "Black":      { "hex": "#161A22", "role": "dark text / dark background" },
+    "Navy":       { "hex": "#071A3C", "role": "dark section background" },
+    "Main-Navy":  { "hex": "#051736", "role": "declared in Figma variables as heading color, but NOT observed in canonical renders - headings on light use Graphite" },
+    "Graphite":   { "hex": "#454E63", "role": "section background, dark/main tone of headings and two-tone titles, gradient top" },
+    "High":       { "hex": "#00A1FF", "role": "PRIMARY ACCENT - accent words/lines in two-tone headings, first chart series" },
+    "High-1":     { "hex": "#75C3F0", "role": "chart tone 2" },
+    "High-2":     { "hex": "#A3D7F5", "role": "chart tone 3" },
+    "High-3":     { "hex": "#D1EBFA", "role": "chart tone 4" },
+    "High-4":     { "hex": "#E9F5FC", "role": "chart tone 5" },
+    "Semi-Light": { "hex": "#DEE6FB", "role": "light section background" },
+    "Gray-Dark":  { "hex": "#A8B1C7", "role": "muted text, muted part of two-tone headings, gradient bottom, agenda separators" },
+    "Grey-Light": { "hex": "#CCD1DB", "role": "hairlines, separators, table row borders" },
+    "White-Cool": { "hex": "#EDEFF2", "role": "image placeholder fill, light heading tone on Navy background" },
+    "White":      { "hex": "#FFFFFF", "role": "default background" }
+  },
+
+  "chart_series_order": ["High", "High-1", "High-2", "High-3", "High-4"],
+
+  "typography": {
+    "family": "Arial",
+    "weight": 400,
+    "note": "Regular is the ONLY weight in the system. No bold, no italic.",
+    "tracking_pct": -1,
+    "tracking_note": "-1% letter-spacing on ALL text. In DrawingML rPr@spc (units of 1/100 pt): spc = -round(font_size_pt), e.g. 26px -> 13pt -> spc=-13.",
+    "styles": {
+      "H1":            { "size_px": 64, "line_height_pct": 100, "usage": "Headings of 2-4 words" },
+      "H2":            { "size_px": 48, "line_height_pct": 115, "usage": "Headings of 5+ words" },
+      "H3":            { "size_px": 36, "line_height_pct": 110, "usage": "Sub-headings" },
+      "H4":            { "size_px": 32, "line_height_pct": 110, "usage": "Card labels, block titles" },
+      "Body":          { "size_px": 26, "line_height_pct": 132, "usage": "Paragraph text" },
+      "Body-Small":    { "size_px": 20, "line_height_pct": 124, "usage": "Secondary paragraph text" },
+      "Caption":       { "size_px": 16, "line_height_pct": 100, "usage": "Footer caption (bottom-left)" },
+      "Num-Head":      { "size_px": 48, "line_height_pct": 100, "usage": "Big numbers, chart value labels (e.g. 30x)" },
+      "Table-Numbers": { "size_px": 26, "line_height_pct": 124, "usage": "Table cell values (e.g. 0.18 msec)" },
+      "Pagination":    { "size_px": 14, "line_height_pct": 110, "usage": "Page number (bottom-right)" }
+    }
+  },
+
+  "grid": {
+    "margins_px": 50,
+    "content_area_px": { "width": 1820, "height": 943.5 },
+    "bottom_boundary_note": "Bottom grid boundary set by the client's PowerPoint guide readout (2026-08-06): dragged to where the guide reads 8.00 cm below slide center, i.e. y=993.5px (bottom = 270pt center + 8cm = 496.77pt). Content height is 943.5 (=993.5-50); raised ~36.5px from the old 1030. (An earlier 892/y=942 overshot too high.) Top/left/right margins stay 50px; bottom margin is 86.5px. Footer UNCHANGED, sits below the grid in the bottom band: caption (52,1033), pagination (y~1048).",
+    "columns": {
+      "count": 12,
+      "gutter_px": 20,
+      "stated_width_px": 135,
+      "computed_width_px": 133.33,
+      "note": "Rules06 states 135px but 12*135+11*20=1840 > 1820. Engine computes: col_width = (1820 - 11*20)/12 = 133.33px. Canonical templates use MEASURED coordinates, the grid is for composing new layouts."
+    },
+    "rows": {
+      "count": 26,
+      "gutter_px": 14,
+      "stated_height_px": 23,
+      "computed_height_px": 22.83,
+      "note": "26 rows fit the content height (943.5px, bottom boundary at y=993.5 = 8.00cm below center). Engine computes: row_height = (943.5 - 25*14)/26 = 22.83px. (Was 24.23px over the old 980px height.)"
+    }
+  },
+
+  "footer": {
+    "caption":    { "x_px": 52,  "y_px": 1030, "style": "Caption", "color": "context-dependent (Gray-Dark on light, lighter on dark)" },
+    "pagination": { "y_px": 1030, "x_px_variants": [1583, 1737], "style": "Pagination", "align": "right edge of content area" },
+    "applies_to": "slides 04 and 06-15. NO footer on 02, 03, 05 (verified against reference renders). Cover (01): caption only at (50,1016), no pagination."
+  },
+
+  "effects": {
+    "shadows": "none - the system is strictly flat",
+    "cover_gradient": {
+      "type": "linear vertical",
+      "top": { "color": "Graphite #454E63" },
+      "bottom": { "color": "Gray-Dark #A8B1C7", "stop_pct": 41.7 },
+      "used_on": "slide 01 only"
+    },
+    "image_placeholders": { "fill": "White-Cool #EDEFF2", "corner_radius_px": 0, "note": "Sharp corners - resolved by pixel check of all placeholders, 2026-07-23." }
+  },
+
+  "known_discrepancies": [
+    "H1 size: variable=64px, Rules03 label=60px, actual cover render=72px. Token=64; template 01 uses a measured 72px override (see layouts.md).",
+    "Caption line-height: variable=100%, Rules03 label=110%. Token=100%.",
+    "Rules01 hex labels differ from variables: Navy #081E45 vs #071A3C; Gray-Dark #A0A5B1 vs #A8B1C7; Grey-Light #D9D9D9 vs #CCD1DB.",
+    "Rules02: High-4 labelled #D1EBFA, variable is #E9F5FC; third and fourth swatches both captioned 'High-3' on the slide.",
+    "Grid arithmetic in Rules06 does not close (see grid.columns.note / grid.rows.note).",
+    "R5 (H1 for 2-4 words / H2 for 5+) is violated by the canonical file itself: section statements 03-05 and headings on 14/15 render multi-word titles at 64px H1. Canonical reproductions follow the renders (layouts.md); NEW slides must follow R5.",
+    "Main-Navy #051736 exists as a variable but no canonical render uses it - headings on light backgrounds are Graphite #454E63.",
+    "Slide 10 lists a 190x38 logo frame in metadata but the reference render shows it empty - no logo shape is emitted."
+  ]
+}

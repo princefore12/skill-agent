@@ -1,0 +1,29 @@
+{
+  "typography": {
+    "fonts": {
+      "heading": "Georgia",
+      "body": "Arial"
+    },
+    "scale": {
+      "DocumentTitle": { "size_pt": 36, "bold": true, "space_before": 0, "space_after": 24 },
+      "Heading1": { "size_pt": 24, "bold": true, "space_before": 18, "space_after": 8, "keep_with_next": true },
+      "Heading2": { "size_pt": 16, "bold": true, "space_before": 14, "space_after": 6, "keep_with_next": true },
+      "BodyText": { "size_pt": 11, "bold": false, "space_before": 0, "space_after": 6, "line_spacing": 1.15 },
+      "Callout": { "size_pt": 12, "bold": false, "italic": true, "space_before": 8, "space_after": 8, "keep_lines": true }
+    }
+  },
+  "colors": {
+    "neutral_dark": "1E293B",
+    "neutral_light": "F8FAFC",
+    "accent_primary": "1E3A8A",
+    "accent_secondary": "CC785C"
+  },
+  "layout": {
+    "margins_cm": {
+      "top": 2.5,
+      "bottom": 2.5,
+      "left": 3.0,
+      "right": 3.0
+    }
+  }
+}
