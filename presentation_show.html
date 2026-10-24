@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Deck - IA Agentique</title>
+    <!-- Polices Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0A0A0A;
+            --text-main: #FAFAFA;
+            --accent: #D4AF37; /* Or subtil */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.1), transparent 50%);
+        }
+
+        /* Conteneur principal */
+        .slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            perspective: 1500px;
+        }
+
+        /* Slides */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateZ(-200px);
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none;
+            padding: 10vw;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateZ(0);
+            pointer-events: all;
+            z-index: 10;
+        }
+
+        /* Layout asymétrique (Agency Style) */
+        .split-layout {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            gap: 5vw;
+            align-items: center;
+        }
+
+        .content-left {
+            flex: 1;
+        }
+
+        /* Typographie contrastée */
+        h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -2px;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
+        }
+
+        .active h1 {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: rgba(250, 250, 250, 0.7);
+            max-width: 500px;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.4s;
+        }
+
+        .active p {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Effet Tilt 3D Haptique */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 4rem;
+            backdrop-filter: blur(20px);
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: translateY(30px) rotateX(0) rotateY(0);
+        }
+
+        .active .glass-card {
+            opacity: 1;
+            transform: translateY(0) rotateX(0) rotateY(0);
+            transition: opacity 0.8s, transform 0.1s ease-out;
+            transition-delay: 0.6s, 0s; /* Délai pour l'apparition, pas pour le tilt */
+        }
+
+        .number-stat {
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            transform: translateZ(50px); /* 3D pop effect */
+        }
+
+        /* Navigation minimale */
+        .nav-controls {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--accent);
+            background: var(--glass-bg);
+        }
+
+        /* So What Data Rule */
+        .data-insight {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="slider">
+
+        <!-- Slide 1: Le monde actuel (Setup) -->
+        <div class="slide active">
+            <div class="split-layout">
+                <div class="content-left">
+                    <h1>Le code est mort.<br><span class="highlight">L'agent</span> est roi.</h1>
+                    <p>Le développement logiciel classique a atteint ses limites humaines. La complexité des stacks modernes ralentit l'innovation des entreprises.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: La Tension (Cost of inaction) -->
+        <div class="slide">
+            <div class="split-layout">
+                <div class="content-left">
+                    <h2 class="data-insight">Vos équipes passent 70% de leur temps à configurer, pas à créer.</h2>
+                    <p>Chaque jour sans automatisation agentique est un jour de R&D perdu face à la concurrence.</p>
+                </div>
+                <div class="glass-card" data-tilt>
+                    <div class="number-stat">70%</div>
+                    <p style="transform: translateZ(30px); margin-top: 1rem;">Temps perdu en maintenance</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Le Contraste (Old vs New) -->
+        <div class="slide">
+            <div class="split-layout">
+                <div class="content-left">
+                    <h1>L'Ancien Monde <br><span class="highlight">vs. Le Nouveau</span></h1>
+                    <p>Avant : Vous écriviez des lignes de code.<br>Aujourd'hui : Vous donnez des directives à des agents autonomes qui codent, testent et déploient pour vous.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: La Solution (The Bridge) -->
+        <div class="slide">
+            <div class="split-layout">
+                <div class="content-left">
+                    <h1>Entrez dans<br><span class="highlight">Antigravity</span></h1>
+                    <p>La première plateforme de conception d'agents autonomes. Intégrée. Sécurisée. Multi-compétences.</p>
+                </div>
+                <div class="glass-card" style="border-color: var(--accent);" data-tilt>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem; transform: translateZ(40px);">+500%</h3>
+                    <p style="transform: translateZ(20px);">Accélération prouvée sur la vélocité des sprints.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: L'Action (Peak-end) -->
+        <div class="slide">
+            <div style="text-align: center;">
+                <h1 style="font-size: 6rem;">Déployez votre<br><span class="highlight">premier agent.</span></h1>
+                <p style="margin: 0 auto; font-size: 1.5rem;">Commencez la révolution aujourd'hui.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" id="prev">←</button>
+        <button class="nav-btn" id="next">→</button>
+    </div>
+
+    <script>
+        // Navigation Logique
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function goToSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        document.getElementById('next').addEventListener('click', () => goToSlide(currentSlide + 1));
+        document.getElementById('prev').addEventListener('click', () => goToSlide(currentSlide - 1));
+
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight' || e.key === 'Space') goToSlide(currentSlide + 1);
+            if(e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+        });
+
+        // 3D Tilt Effect Haptique
+        const tiltCards = document.querySelectorAll('.glass-card');
+        
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; // Max 10 deg
+                const rotateY = ((x - centerX) / centerX) * 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+            });
+        });
+    </script>
+</body>
+</html>

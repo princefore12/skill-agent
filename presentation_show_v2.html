@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Deck V2 - Strategic Narrative</title>
+    <!-- Polices Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 60-30-10 Rule */
+            --bg-60: #0F1117; 
+            --surface-30: #1A1D26;
+            --accent-10: #00FF7F; /* Vert Néon - Victoire/Anomalie */
+            --text-main: #F8F9FA;
+            --text-muted: #9CA3AF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-60);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            perspective: 1500px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateZ(-200px);
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+            pointer-events: none;
+            padding: 8vw 10vw; /* Grille / Marges de sécurité */
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateZ(0);
+            pointer-events: all;
+            z-index: 10;
+        }
+
+        /* Typographic Tokens */
+        .eyebrow {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease 0.1s;
+        }
+
+        .action-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 3rem;
+            max-width: 900px;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
+        }
+
+        .body-text {
+            font-size: 1.5rem;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-muted);
+            max-width: 600px;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
+        }
+
+        .big-metric-container {
+            position: absolute;
+            right: 15vw;
+            top: 50%;
+            transform: translateY(-50%) translateZ(50px) rotateY(-10deg);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s;
+            transform-style: preserve-3d;
+        }
+
+        .big-metric {
+            font-size: 10rem;
+            font-weight: 900;
+            color: var(--accent-10);
+            line-height: 1;
+            text-shadow: 0 0 40px rgba(0, 255, 127, 0.3);
+        }
+
+        .metric-label {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        .active .eyebrow,
+        .active .action-title,
+        .active .body-text {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .active .big-metric-container {
+            transform: translateY(-50%) translateZ(0) rotateY(0);
+            opacity: 1;
+        }
+
+        /* Minimalist Data-Ink Chart */
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            height: 300px;
+            margin-top: 4rem;
+            border-bottom: 2px solid var(--surface-30); /* Seul axe nécessaire */
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
+        }
+
+        .active .chart-container {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .bar {
+            width: 80px;
+            background-color: var(--surface-30); /* Gris à 90% */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            border-radius: 4px 4px 0 0;
+            transition: height 1s cubic-bezier(0.25, 1, 0.5, 1) 0.8s;
+        }
+
+        .bar.highlight {
+            background-color: var(--accent-10); /* Accentuation de la donnée clé */
+            box-shadow: 0 0 20px rgba(0, 255, 127, 0.2);
+        }
+
+        /* Direct Labeling (Tufte) */
+        .bar span {
+            position: absolute;
+            top: -30px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .bar.highlight span {
+            color: var(--accent-10);
+            font-size: 1.5rem;
+            top: -40px;
+        }
+
+        /* Nav */
+        .nav {
+            position: fixed;
+            bottom: 30px;
+            right: 50px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+        .nav button {
+            background: var(--surface-30);
+            border: none;
+            color: white;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav button:hover {
+            background: var(--accent-10);
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="slider">
+
+        <!-- Slide 1: The Shift -->
+        <div class="slide active">
+            <div class="eyebrow">1. Le Changement Tectonique</div>
+            <div class="action-title">La réflexion humaine ne suffit plus face à la vélocité des données.</div>
+            <div class="body-text">Le passage d'une économie de processus statiques à une économie d'agents autonomes est acté. Les règles du jeu ont changé.</div>
+        </div>
+
+        <!-- Slide 2: Winners & Losers -->
+        <div class="slide">
+            <div class="eyebrow">2. Gagnants et Perdants</div>
+            <div class="action-title">Ceux qui n'automatisent pas leur R&D disparaissent dans les 3 ans.</div>
+            <div class="body-text">La complexité opérationnelle écrase la créativité. Les entreprises traditionnelles voient leurs marges s'effondrer sous le poids de la maintenance.</div>
+            
+            <div class="big-metric-container">
+                <div class="big-metric">3.5x</div>
+                <div class="metric-label">Risque de faillite accru pour les retardataires</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Promised Land -->
+        <div class="slide">
+            <div class="eyebrow">3. La Terre Promise</div>
+            <div class="action-title">Imaginez un monde où votre entreprise s'optimise en temps réel, la nuit.</div>
+            <div class="body-text">Un futur où vos équipes créent la stratégie, pendant que le système exécute la tactique à la perfection. Zéro fatigue, zéro délai.</div>
+        </div>
+
+        <!-- Slide 4: Magic Gifts -->
+        <div class="slide">
+            <div class="eyebrow">4. L'Atout Maître (Magic Gifts)</div>
+            <div class="action-title">Notre plateforme déploie des employés virtuels dans votre infrastructure.</div>
+            <div class="body-text">Sans écrire une ligne de code, orchestrez des flottes d'agents qui communiquent, vérifient et produisent. L'Intelligence Artificielle au service de l'action.</div>
+            
+            <div class="big-metric-container">
+                <div class="big-metric" style="font-size: 8rem;">+400%</div>
+                <div class="metric-label">Accélération du Time-to-Market dès le mois 1</div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Evidence (Data-Ink Minimalist Chart) -->
+        <div class="slide">
+            <div class="eyebrow">5. Preuves (Règle du "So What?")</div>
+            <div class="action-title">L'intégration agentique fait chuter les coûts opérationnels de 80%.</div>
+            
+            <!-- Edward Tufte Data-Ink Rule: No grid, no legend, gray bars, one accent -->
+            <div class="chart-container">
+                <div class="bar" style="height: 100%;"><span>100%</span></div>
+                <div class="bar" style="height: 95%;"><span>95%</span></div>
+                <div class="bar" style="height: 90%;"><span>90%</span></div>
+                <div class="bar highlight" style="height: 20%;"><span>20%</span></div>
+            </div>
+            <div class="body-text" style="margin-top: 2rem;">Évolution des coûts Opex avant/après implémentation.</div>
+        </div>
+
+    </div>
+
+    <div class="nav">
+        <button id="prev">←</button>
+        <button id="next">→</button>
+    </div>
+
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function move(dir) {
+            slides[current].classList.remove('active');
+            current = (current + dir + slides.length) % slides.length;
+            slides[current].classList.add('active');
+        }
+
+        document.getElementById('next').onclick = () => move(1);
+        document.getElementById('prev').onclick = () => move(-1);
+        
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight' || e.key === 'Space') move(1);
+            if(e.key === 'ArrowLeft') move(-1);
+        });
+    </script>
+</body>
+</html>

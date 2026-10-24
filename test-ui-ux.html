@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaS Modern - UI/UX Pro Max Test</title>
+    <!-- Plus Jakarta Sans via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (CDN for quick test) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2563EB',
+                        onPrimary: '#FFFFFF',
+                        secondary: '#3B82F6',
+                        accent: '#EA580C',
+                        onAccent: '#000000',
+                        background: '#F8FAFC',
+                        foreground: '#1E293B',
+                        card: 'rgba(255, 255, 255, 0.7)',
+                        muted: '#E9EFF8',
+                        mutedForeground: '#475569',
+                        border: '#E2E8F0',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Glassmorphism utility classes */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Vibrant background blobs to highlight the glass effect */
+        .bg-blob-1 {
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: #2563EB;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+        .bg-blob-2 {
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: #EA580C;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.1;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground min-h-screen relative overflow-x-hidden font-sans">
+    
+    <!-- Decorative background elements for Glassmorphism -->
+    <div class="bg-blob-1"></div>
+    <div class="bg-blob-2"></div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-card transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+                        <svg class="w-5 h-5 text-onPrimary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-primary">SaaSFlow</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-mutedForeground hover:text-primary font-medium transition-colors duration-200">Fonctionnalités</a>
+                    <a href="#pricing" class="text-mutedForeground hover:text-primary font-medium transition-colors duration-200">Tarifs</a>
+                    <a href="#contact" class="text-mutedForeground hover:text-primary font-medium transition-colors duration-200">Contact</a>
+                    <button class="bg-accent text-white px-6 py-2.5 rounded-full font-semibold hover:bg-orange-700 transition-all duration-200 shadow-lg hover:shadow-orange-500/30 transform hover:-translate-y-0.5 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent">
+                        Démarrer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="pt-32 pb-16 sm:pt-40 sm:pb-24 lg:pb-32 px-4 mx-auto max-w-7xl text-center relative z-10">
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-8 leading-tight">
+            L'intelligence de design <br class="hidden md:block" />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">automatisée</span>
+        </h1>
+        <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-mutedForeground leading-relaxed mb-10">
+            Ceci est un test en direct généré par l'agent IA. Sans aucune instruction de style de ta part, l'agent a interrogé le skill UI/UX Pro Max pour récupérer ce thème.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <button class="bg-primary text-onPrimary px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition-all duration-200 shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-1 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary">
+                Découvrir le workflow
+            </button>
+            <button class="glass-card text-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-white/80 transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary">
+                Voir la documentation
+            </button>
+        </div>
+    </main>
+
+    <!-- Features Section (Glassmorphism Cards) -->
+    <section id="features" class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-foreground">Généré selon les règles métier</h2>
+                <p class="mt-4 text-mutedForeground">Voici comment la donnée UI/UX a été appliquée.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-6 text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-foreground">Thème Glassmorphism</h3>
+                    <p class="text-mutedForeground">Suggéré par la base de données UUPM pour les SaaS modernes. Utilise des transparences (backdrop-filter) et des flous.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center mb-6 text-accent">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-foreground">Typographie Exacte</h3>
+                    <p class="text-mutedForeground">Importation automatique de <i>Plus Jakarta Sans</i>, recommandée pour son côté amical, professionnel et SaaS.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-6 text-green-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-foreground">Contraste & Accessibilité</h3>
+                    <p class="text-mutedForeground">Application des ratios de contraste et de comportements focus-visible conformes aux standards WCAG exigés par le skill.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D UI Showcase Section -->
+    <section class="py-20 bg-slate-100 relative z-10 border-t border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">Démonstration : Styles 3D CSS</h2>
+            <p class="text-mutedForeground mb-16">Généré via les règles de Claymorphism et Skeuomorphisme du skill UI/UX.</p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-16">
+                
+                <!-- Exemple 1: Bouton 3D Physique (Push) -->
+                <div class="flex flex-col items-center gap-6">
+                    <p class="font-semibold text-mutedForeground">Bouton Tactile (Skeuomorphisme)</p>
+                    <!-- Le bouton utilise des ombres multiples pour créer l'épaisseur 3D et un translate-y pour l'enfoncement -->
+                    <button class="px-10 py-4 text-lg font-bold text-white bg-accent rounded-2xl shadow-[0_8px_0_#c2410a,0_15px_20px_rgba(234,88,12,0.4)] transition-all active:shadow-[0_0px_0_#c2410a,0_0px_0_rgba(234,88,12,0.4)] active:translate-y-2 outline-none focus-visible:ring-4 focus-visible:ring-accent focus-visible:ring-offset-4">
+                        Presse-moi fort !
+                    </button>
+                </div>
+
+                <!-- Exemple 2: Claymorphism / Neumorphism Card -->
+                <div class="flex flex-col items-center gap-6">
+                    <p class="font-semibold text-mutedForeground">Carte "Claymorphism"</p>
+                    <!-- Utilisation d'ombres portées externes (clair/sombre) et d'ombres internes (inset) pour donner un volume "pâte à modeler" -->
+                    <div class="w-72 h-32 rounded-[2rem] bg-[#e2e8f0] flex items-center justify-center font-bold text-lg text-slate-600 transition-transform hover:scale-105 cursor-pointer border-[3px] border-white/50" 
+                         style="box-shadow: 15px 15px 30px #cbd5e1, -15px -15px 30px #f8fafc, inset 6px 6px 12px rgba(255,255,255,0.8), inset -6px -6px 12px rgba(0,0,0,0.06);">
+                        Volume 3D Doux
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
